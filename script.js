@@ -14,13 +14,11 @@ const Gameboard = (function() {
 
     // finding the empty cells
     const printSign = (i, j, player) => {
-        const availableBox = boardArr.filter((row) =>
-        row[j].getValue() === 0).map(row => row[j]);
+        const cell = boardArr[i][j];
+        if(cell.getValue() !== 0) return;
 
-        //if there is no cell available
-        if(!availableBox.length) return;
         
-        board[i][availableBox].addSign(player);
+        cell.addSign(player);
     };
 
     const printBoard = () => {
@@ -68,7 +66,7 @@ function Gameflow(
     ];
     let playerInHand = players[0];
     const changePlayer = () => {
-        playerInHand = players[0]?players[1]:
+        playerInHand = (playerInHand === players[0])?players[1]:
         players[0];
     };
     const getPlayerInHand = () => playerInHand;
@@ -83,6 +81,21 @@ function Gameflow(
             `printing ${getPlayerInHand().name}'s sign into ${[row]} ${[column]} index`
         );
         Gameboard.printSign(row, column, getPlayerInHand().sign);
+        
+        // indecating win status
+        const gameArr = Gameboard.board();
+        for(let i = 0; i < 3; i++){
+            //putting the line values in an array
+            const statusArr = [];
+            for(let j = 0; j > 3; j++){
+                statusArr.push(gameArr[i][j].getValue());
+            };
+            if(
+                (statusArr[0] && statusArr[1] && statusArr[2]) === ("x" || "O")
+            ) {
+                console.log(`${getPlayerInHand().name} Wins`);
+            };
+        };
         changePlayer();
         playNewRound();
     };
