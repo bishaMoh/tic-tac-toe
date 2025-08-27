@@ -76,6 +76,30 @@ function Gameflow(
         console.log(`${getPlayerInHand().name}'s turn.`);
     };
 
+    //the win function
+
+    const checkWin = (row, col, sign) => {
+        const board = Gameboard.board();
+
+        //check row 
+        if(board[row].every(cell => cell.getValue() === sign))
+        return true;
+        
+        //check col
+        if(board.every(r => r[col].getValue() === sign)) 
+        return true;
+
+        //check diagonal
+        if(row === col && [0, 1, 2].every(i => board[i][i].getValue()) === sign)
+        return true;
+        
+        // check rev diagonal
+        if(row + col === 2 && [0, 1, 2].every(i => board[i][2 - i].getValue()) === sign)
+        return true;
+
+        return false;
+    };
+
     const playRound = (row, column) => {
         console.log(
             `printing ${getPlayerInHand().name}'s sign into ${[row]} ${[column]} index`
@@ -83,18 +107,9 @@ function Gameflow(
         Gameboard.printSign(row, column, getPlayerInHand().sign);
         
         // indecating win status
-        const gameArr = Gameboard.board();
-        for(let i = 0; i < 3; i++){
-            //putting the line values in an array
-            const statusArr = [];
-            for(let j = 0; j > 3; j++){
-                statusArr.push(gameArr[i][j].getValue());
-            };
-            if(
-                (statusArr[0] && statusArr[1] && statusArr[2]) === ("x" || "O")
-            ) {
-                console.log(`${getPlayerInHand().name} Wins`);
-            };
+        if(checkWin(row, column, getPlayerInHand().sign)) {
+            console.log(`${getPlayerInHand().name}'s WIN`);
+            return;
         };
         changePlayer();
         playNewRound();
@@ -106,6 +121,7 @@ function Gameflow(
         getPlayerInHand,
     };
 }
+
 
 const game = Gameflow();
 
