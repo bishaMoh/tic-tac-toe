@@ -123,6 +123,24 @@ function Gameflow(
 }
 
 
-const game = Gameflow();
+
+const DisplayControllar = (function () {
+    // starting the game 
+    const start = document.getElementById("start");
+    document.addEventListener("click", () => {
+        Gameflow();
+    });
+
+    // waiting for a move
+    const box = document.getElementsByClassName("board");
+    
+    document.addEventListener("click", function() {
+        const sign = document.createElement("p");
+        sign.textContent = `${game.getPlayerInHand().sign}`;
+        console.log(`${game.getPlayerInHand().sign}`);
+    });
+})();
+
+
 
 
