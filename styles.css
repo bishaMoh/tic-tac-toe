@@ -1,24 +1,44 @@
 
 * {
- display: flex; 
+ 
  justify-content: center;
  flex-direction: column;
  margin: 0px;
- background-color: #aa1d1dd1;
+ 
+ color: #aaa9a9;
 }
 
-title {
+body {
+    display: flex;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1em;
+    color: #aaa9a9;
+    background-color: #000000d1;
+}
+
+h1 {
     align-self: center;
+}
+
+.players {
+    align-items: center;
+    align-self: center;
+    flex-direction: row;
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    height: 80px;
+    font-size: 1.5em;
 }
 
 .container {
     display: grid;
     grid-template: 100px 100px 100px / 100px 100px 100px;
-    background-color: #d21414b1;
+    /* background-color: #090909; */
     border-radius: 10px;
     margin: 8px;
     /* box-shadow: 7px 7px 3px #692424; */
-    border: 2px solid #6e1a1a;
+   
     padding: 8px;
 }
 
@@ -26,18 +46,31 @@ title {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #492424;
     border-radius: 5px;
     font-size: 50px;
-    background-color: #a12d2dc3;
-    gap: 2px;
+    background-color: #181818c3;
     margin: 4px;
-    box-shadow: 4px 4px 2px #692424;
-    color: rgb(250, 179, 38);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 2px 2px 2px #1c1919;
+    border: 1px solid rgb(33, 33, 33);
 
 }
 
 div .board:hover {
-    background-color: #7e0606;
+    background-color: #535353;
+}
+
+#btns {
+    display: grid;
+        grid-template: 40px / 60px 60px;
+        gap: 40px;
+        margin: 45px;
+}
+
+#start,
+#restart {
+    border-radius: 5px;
+    border: 1px solid rgb(40, 38, 38);
+    background-color: #181818c3;
+    box-shadow: 2px 2px 1px #1c1919;
+
 }
